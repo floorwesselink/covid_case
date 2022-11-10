@@ -1,0 +1,8 @@
+pandas==1.5.0
+streamlit==1.14.0
+pycountry==22.3.5
+pycountry-convert==0.7.2
+rich==12.6.0
+geopy==2.2.0
+pluggy==1.0.0
+ply==3.11
