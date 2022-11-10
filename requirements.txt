@@ -6,3 +6,8 @@ rich==12.6.0
 geopy==2.2.0
 pluggy==1.0.0
 ply==3.11
+openpyxl==3.0.10
+gitdb==4.0.9
+GitPython==3.1.29
+GDAL==3.5.2
+geographiclib==1.52
