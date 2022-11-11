@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 import streamlit as st
@@ -20,7 +20,7 @@ import io
 
 # # Inladen dataframes
 
-# In[2]:
+# In[5]:
 
 
 #Dataframes boxplots
@@ -30,7 +30,7 @@ vac_continenten = pd.read_csv('vac_continenten.csv')
 deaths_continenten = pd.read_csv('deaths_continenten.csv')
 
 
-# In[5]:
+# In[6]:
 
 
 #Dataframes kaarten
@@ -54,7 +54,7 @@ total_vac_europa = pd.read_csv('total_vac_europa.csv')
 
 # # Streamlit
 
-# In[22]:
+# In[8]:
 
 
 st.title('Verloop Covid-19 pandemie')
@@ -62,20 +62,20 @@ st.title('Verloop Covid-19 pandemie')
 
 # ## Boxplots
 
-# In[8]:
+# In[9]:
 
 
 st.header('Boxplots van Corona gevallen, testen, vaccinaties en sterfgevallen per continent')
 
 
-# In[9]:
+# In[10]:
 
 
 select_box_variabelen_box = st.selectbox('Variabelen',
                                     options = ['Corona gevallen', 'Corona testen', 'Corona doden', 'Corona vaccinaties'], key = 30)
 
 
-# In[10]:
+# In[11]:
 
 
 #Boxplots continenten
@@ -147,7 +147,7 @@ elif  select_box_variabelen_box == 'Corona vaccinaties':
 elif  select_box_variabelen_box == 'Corona doden':
     
     #Schaal kiezen
-    schaal = st.radio('Schaal: ', ['Totaal aantal sterfgevallen per land', 'sterfgevallen per honderd duizend inwoners'])
+    schaal = st.radio('Schaal: ', ['Totaal aantal sterfgevallen per land', 'Sterfgevallen per honderd duizend inwoners'])
     
     
     #Juiste kolom kiezen uit dataframe
@@ -169,13 +169,13 @@ elif  select_box_variabelen_box == 'Corona doden':
 
 # ## Code kaart
 
-# In[11]:
+# In[12]:
 
 
 st.header('Kaart over Corona gevallen, testen, vaccinaties en stergevallen per maand')
 
 
-# In[12]:
+# In[13]:
 
 
 select_box_variabelen = st.selectbox('Variabelen',
@@ -184,7 +184,7 @@ select_box_variabelen = st.selectbox('Variabelen',
 st.write('Variabele: ', select_box_variabelen)
 
 
-# In[13]:
+# In[14]:
 
 
 ##Kiezen van de variabele uit de select box
@@ -245,16 +245,16 @@ elif select_box_variabelen == "Corona doden":
     schaal = st.radio('Schaal: ', ['Nieuwe corona doden', 'Corona doden per inwoner', 'Corona doden per miljoen inwoners', 'Corona doden per tien miljoen inwoners'])
     if schaal == 'Nieuwe corona doden':
         kolom = 'new_deaths_smoothed'
-        maxi = max_deaths
+        
     elif schaal == 'Corona doden per inwoner':
         kolom = 'deaths_person'
-        maxi = max_deaths_person
+        
     elif schaal == 'Corona doden per miljoen inwoners':
         kolom = 'per_milion'
-        maxi = max_deaths_milion
+        
     elif schaal =='Corona doden per tien miljoen inwoners':
         kolom = 'per_ten_million'
-        maxi = max_deaths_ten_milion
+        
     
     
     #Plotten van het figuur
@@ -285,16 +285,16 @@ elif select_box_variabelen=='Corona testen':
     schaal = st.radio('Schaal: ', ['Nieuwe corona testen', 'Corona testen per inwoner', 'Corona testen per miljoen inwoners', 'Corona testen per tien miljeon inwoners'])
     if schaal == 'Nieuwe corona testen':
         kolom = 'new_tests_smoothed'
-        maxi = max_tests
+        
     elif schaal == 'Corona testen per inwoner':
         kolom = 'tests_person'
-        maxi = max_tests_person
+        
     elif schaal == 'Corona testen per miljoen inwoners':
         kolom = 'per_milion'
-        maxi = max_tests_milion
+        
     elif schaal =='Corona testen per tien miljeon inwoners':
         kolom = 'per_ten_million'
-        maxi = max_tests_ten_milion
+        
     
     #Plotten van het figuur
     fig_tests = px.choropleth(df_tests_map, locations='iso_code', color=f'{kolom}',
@@ -324,16 +324,16 @@ elif select_box_variabelen=='Corona vaccinaties':
     schaal = st.radio('Schaal: ', ['Nieuwe vaccinaties', 'Vaccinaties per inwoner', 'Vaccinaties per miljoen inwoners', 'Vaccinaties per tien miljoen inwoners'])
     if schaal == 'Nieuwe vaccinaties':
         kolom = 'new_vaccinations_smoothed'
-        maxi = max_vaccinations
+        
     elif schaal == 'Vaccinaties per inwoner':
         kolom = 'vaccinations_person'
-        maxi = max_vaccinations_person
+        
     elif schaal == 'Vaccinaties per miljoen inwoners':
         kolom = 'per_milion'
-        maxi = max_vaccinations_milion
+        
     elif schaal =='Vaccinaties per tien miljoen inwoners':
         kolom = 'per_ten_million'
-        maxi = max_vaccinations_ten_milion
+        
         
     #Plotten van het figuur   
     fig_vaccinations = px.choropleth(df_vaccinations_map, locations='iso_code', color=f'{kolom}',
@@ -348,15 +348,16 @@ elif select_box_variabelen=='Corona vaccinaties':
 
 
 
+# 
 # ## Lijnplotten
 
-# In[14]:
+# In[16]:
 
 
 st.header('Lijnplot over Corona gevallen, testen, vaccinaties en stergevallen per continent')
 
 
-# In[15]:
+# In[17]:
 
 
 select_box_variabelen_lijn = st.selectbox('Variabelen',
@@ -365,7 +366,7 @@ select_box_variabelen_lijn = st.selectbox('Variabelen',
 st.write('Variabele: ', select_box_variabelen_lijn)
 
 
-# In[16]:
+# In[18]:
 
 
 ##Coronagevallen
@@ -455,7 +456,7 @@ elif select_box_variabelen_lijn == 'Corona vaccinaties':
     
 ##Corona doden
 
-elif select_box_variabelen_lijn == 'Corona testen per honderd duizend inwoners':
+elif select_box_variabelen_lijn == 'Corona doden':
     
     df_d_lijn['month_year'] = df_d_lijn['month_year'].astype(str)
     
@@ -482,13 +483,13 @@ elif select_box_variabelen_lijn == 'Corona testen per honderd duizend inwoners':
         
 
 
-# In[17]:
+# In[19]:
 
 
 st.header('Lijnplot over Corona gevallen, testen, vaccinaties en sterfgevallen in Europa')
 
 
-# In[18]:
+# In[20]:
 
 
 logaritmische_schaal = st.checkbox('Logaritmische schaal')
@@ -518,13 +519,13 @@ else:
 
 # ## voorspelling
 
-# In[19]:
+# In[21]:
 
 
 st.header('Sterfgevallen ten op zichte van vaccinaties')
 
 
-# In[21]:
+# In[22]:
 
 
 fig_scatter = px.scatter(total_vac_europa, x = 'total_vaccinations', y = 'total_deaths', hover_data = ['month_year'])
