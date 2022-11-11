@@ -54,6 +54,12 @@ total_vac_europa = pd.read_csv('total_vac_europa.csv')
 
 # # Streamlit
 
+# In[22]:
+
+
+st.title('Verloop Covid-19 pandemie')
+
+
 # ## Boxplots
 
 # In[8]:
